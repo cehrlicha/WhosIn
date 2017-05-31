@@ -28,8 +28,11 @@ class EventsController < ApplicationController
     authorize @event
     @menu_items = @event.menu_items
 
-    user = current_user
-    @fb_friends = Friend.fb_friends(user)
+    @fb_friends = []
+    @fb_friends = current_user.facebook.get_connection("me","friends").map do |friend|
+      friend["name"]
+    end
+
   end
 
 
