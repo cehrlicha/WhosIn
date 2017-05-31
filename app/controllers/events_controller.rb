@@ -29,7 +29,6 @@ class EventsController < ApplicationController
     @menu_items = @event.menu_items
 
     @fb_friends = []
-
     @fb_friends = current_user.facebook.get_connection("me","friends").map do |friend|
     friend["name"]
     end
